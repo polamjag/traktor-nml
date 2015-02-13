@@ -20,6 +20,7 @@ module Traktor
          bpm: el.xpath('TEMPO[@BPM]').attribute('BPM').map{ |e| e.text.to_f }.first
         }
       end
+      # FIXME: maybe recursive parsing is required here
       setlist = doc.xpath('NML/PLAYLISTS/NODE/SUBNODES/NODE[@TYPE="PLAYLIST"]').map do |sl|
         {
          name: sl.attribute('NAME').text,
@@ -30,6 +31,7 @@ module Traktor
          end.compact
         }
       end
+      # trim primarykey from tracks info for privacy
       setlist.each do |sl|
         sl[:tracks].each do |tr|
           tr.delete(:primarykey)
