@@ -1,6 +1,9 @@
-# Traktor::Nml
+# Traktor::NML
 
-TODO: Write a gem description
+[![Circle CI](https://circleci.com/gh/polamjag/traktor-nml.svg?style=svg)](https://circleci.com/gh/polamjag/traktor-nml)
+[![Gem Version](https://badge.fury.io/rb/traktor-nml.svg)](http://badge.fury.io/rb/traktor-nml)
+
+Ruby library to parse NI Traktor's nml playlist file
 
 ## Installation
 
@@ -20,11 +23,17 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'traktor/nml'
+
+Traktor::NML.parse File.open("path/to/playlist.nml")
+# or
+Traktor::NML.parse content_of_nml
+```
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/traktor-nml/fork )
+1. Fork it ( https://github.com/polamjag/traktor-nml/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
