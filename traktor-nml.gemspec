@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Traktor::Nml::VERSION
   spec.authors       = ["polamjag"]
   spec.email         = ["s@polamjag.info"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Parse Native Instruments Traktor's nml playlist file}
+  spec.description   = %q{Parse Native Instruments Traktor's nml playlist file}
+  spec.homepage      = "https://github.com/polamjag/traktor-nml"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
