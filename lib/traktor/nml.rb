@@ -1,5 +1,5 @@
-require "traktor/collection"
-require "traktor/playlist"
+require "traktor/nml/collection"
+require "traktor/nml/playlist"
 require "traktor/nml/version"
 require "oga"
 
