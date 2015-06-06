@@ -97,6 +97,10 @@ Traktor::NML.parse content_of_nml
     {:name=>"n.n.", :type=>0, :start=>124746.0, :length=>0.0, :repeats=>-1, :hotcue=>7}]}]
 ```
 
+## Notice
+
+* Release date may be like `YYYY/1/1` when only YEAR is specified in file
+
 ## Contributing
 
 1. Fork it ( https://github.com/polamjag/traktor-nml/fork )
