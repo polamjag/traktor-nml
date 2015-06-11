@@ -44,9 +44,9 @@ module Traktor
       end
 
       def track_from_primarykey(primarykey)
-        @collection.select do |track|
+        @collection.find do |track|
           track.primarykey == primarykey
-        end.first
+        end
       end
 
       def length
