@@ -6,6 +6,8 @@ require "traktor/nml/cue"
 module Traktor
   module NML
     class Collection
+      include Enumerable
+
       attr_reader :collection
 
       def initialize(node)
@@ -48,9 +50,20 @@ module Traktor
       end
 
       def length
-        collection.length
+        @collection.length
       end
       alias_method :size, :length
+
+      def each
+        @collection.each do |track|
+          yield track
+        end
+      end
+
+      def [](i)
+        @collection[i]
+      end
+
 
       private
       def try_text(elm)

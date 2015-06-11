@@ -3,6 +3,8 @@ require "oga"
 module Traktor
   module NML
     class Playlist
+      include Enumerable
+
       attr_reader :tracks
 
       def initialize(node, collection)
@@ -12,9 +14,19 @@ module Traktor
       end
 
       def length
-        tracks.length
+        @tracks.length
       end
       alias_method :size, :length
+
+      def each
+        @tracks.each do |track|
+          yield track
+        end
+      end
+
+      def [](i)
+        @tracks[i]
+      end
 
       private
       def find_playlist(node)

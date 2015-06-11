@@ -8,7 +8,7 @@ module Traktor
       end
 
       def load(filepath)
-        Traktor::NML::File.new File.read File.expand_path filepath
+        Traktor::NML::File.new(::File.read filepath).playlist
       end
     end
   end
