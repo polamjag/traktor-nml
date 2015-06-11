@@ -1,6 +1,8 @@
 require "oga"
+require "date"
 require "traktor/nml/track"
 require "traktor/nml/cue"
+
 
 module Traktor
   module NML
@@ -22,7 +24,7 @@ module Traktor
             genre: el.xpath('INFO[@GENRE]').attribute('GENRE').map{ |e| e.text }.join(", "),
             label: el.xpath('INFO[@LABEL]').attribute('LABEL').map{ |e| e.text }.join(", "),
             playtime: el.xpath('INFO[@PLAYTIME]').attribute('PLAYTIME').map{ |e| e.text.to_f }.first,
-            release_date: el.xpath('INFO[@RELEASE_DATE]').attribute('RELEASE_DATE').map{ |e| e.text }.join(", "),
+            release_date: parse_date(el.xpath('INFO[@RELEASE_DATE]').attribute('RELEASE_DATE').map{ |e| e.text }.join(", ")),
             bpm: el.xpath('TEMPO[@BPM]').attribute('BPM').map{ |e| e.text.to_f }.first,
             key: try_text(el.xpath('INFO[@KEY]').attribute('KEY').first),
             musical_key: try_text(el.xpath('MUSICAL_KEY[@VALUE]').attribute('VALUE').first),
@@ -58,6 +60,10 @@ module Traktor
         else
           elm.text
         end
+      end
+
+      def parse_date(date)
+        Date.parse date unless date.empty?
       end
     end
   end
