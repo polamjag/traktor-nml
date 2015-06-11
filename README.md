@@ -27,6 +27,7 @@ Or install it yourself as:
 require 'traktor/nml'
 
 Traktor::NML.parse File.open("path/to/playlist.nml")
+Traktor::NML.load "path/to/playlist.nml"
 # or
 Traktor::NML.parse content_of_nml
 ```
