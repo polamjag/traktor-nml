@@ -3,7 +3,6 @@ require "date"
 require "traktor/nml/track"
 require "traktor/nml/cue"
 
-
 module Traktor
   module NML
     class Collection
