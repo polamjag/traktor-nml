@@ -56,4 +56,47 @@ describe Traktor::NML do
       expect(@file.collection[10].genre).to eq 'Progressive House'
     end
   end
+
+  describe Traktor::NML::Track do
+    before do
+      @playlist = Traktor::NML.load @path_nml_win
+      @track = @playlist[3]
+    end
+
+    describe 'accessor' do
+      it 'works as method' do
+        expect(@track.title).to eq "Drop (Original Mix)"
+      end
+
+      it 'works as [String]' do
+        expect(@track["title"]).to eq "Drop (Original Mix)"
+      end
+
+      it 'works as [Symbol]' do
+        expect(@track[:title]).to eq "Drop (Original Mix)"
+      end
+    end
+  end
+
+  describe Traktor::NML::Cue do
+    before do
+      @playlist = Traktor::NML.load @path_nml_win
+      @cues = @playlist[3].cues
+      @cue = @cues[0]
+    end
+
+    describe 'accessor' do
+      it 'works as method' do
+        expect(@cue.name).to eq "AutoGrid"
+      end
+
+      it 'works as [String]' do
+        expect(@cue["name"]).to eq "AutoGrid"
+      end
+
+      it 'works as [Symbol]' do
+        expect(@cue[:name]).to eq "AutoGrid"
+      end
+    end
+  end
 end
