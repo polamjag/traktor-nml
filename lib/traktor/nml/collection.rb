@@ -1,4 +1,6 @@
 require "oga"
+require "traktor/nml/track"
+require "traktor/nml/cue"
 
 module Traktor
   module NML
@@ -7,7 +9,7 @@ module Traktor
 
       def initialize(node)
         @collection = node.map do |el|
-          {
+          Traktor::NML::Track.new({
             title: try_text(el.attribute('TITLE')),
             artist: try_text(el.attribute('ARTIST')),
             album: {
@@ -25,25 +27,31 @@ module Traktor
             key: try_text(el.xpath('INFO[@KEY]').attribute('KEY').first),
             musical_key: try_text(el.xpath('MUSICAL_KEY[@VALUE]').attribute('VALUE').first),
             cues: el.xpath('CUE_V2').map do |cue|
-              {
+              Traktor::NML::Cue.new({
                 name: cue.attribute('NAME').value,
                 type: cue.attribute('TYPE').value.to_i,
                 start: cue.attribute('START').value.to_f,
                 length: cue.attribute('LEN').value.to_f,
                 repeats: cue.attribute('REPEATS').value.to_i,
                 hotcue: cue.attribute('HOTCUE').value.to_i
-              }
+              })
             end
-          }
+          })
         end
       end
 
       def track_from_primarykey(primarykey)
         @collection.select do |track|
-          track[:primarykey] == primarykey
+          track.primarykey == primarykey
         end.first
       end
 
+      def length
+        collection.length
+      end
+      alias_method :size, :length
+
+      private
       def try_text(elm)
         if elm.nil?
           ""

@@ -1,15 +1,9 @@
-require "traktor/nml/collection"
-require "traktor/nml/playlist"
-require "traktor/nml/version"
-require "oga"
+require "traktor/nml/file"
 
 module Traktor
   module NML
     def self.parse(content)
-      doc = Oga.parse_xml content
-      col = Traktor::NML::Collection.new doc.xpath('NML/COLLECTION/ENTRY')
-      setlist = Traktor::NML::Playlist.new doc.xpath('NML/PLAYLISTS'), col
-      setlist.tracks
+      Traktor::NML::File.new(content).playlist
     end
   end
 end
