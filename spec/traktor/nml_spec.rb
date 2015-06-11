@@ -33,6 +33,10 @@ describe Traktor::NML do
     it 'is Enumerable' do
       expect(@playlist.map{|pl| pl.title }.length).to eq 40
     end
+
+    it 'is directly accessed to elements via []' do
+      expect(@playlist[10].genre).to eq 'Electro House'
+    end
   end
 
   describe Traktor::NML::Collection do
@@ -46,6 +50,10 @@ describe Traktor::NML do
 
     it 'is Enumerable' do
       expect(@file.collection.map{|pl| pl.title }.length).to eq 40
+    end
+
+    it 'is directly accessed to elements via []' do
+      expect(@file.collection[10].genre).to eq 'Progressive House'
     end
   end
 end
