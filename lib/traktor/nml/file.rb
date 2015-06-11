@@ -12,8 +12,6 @@ module Traktor
 
         @collection = Traktor::NML::Collection.new doc.xpath('NML/COLLECTION/ENTRY')
         @playlist   = Traktor::NML::Playlist.new doc.xpath('NML/PLAYLISTS'), @collection
-
-        self
       end
     end
   end
