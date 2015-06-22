@@ -1,0 +1,54 @@
+#!/usr/bin/env ruby
+
+require 'traktor/nml'
+
+require 'optparse'
+
+opt = OptionParser.new
+out_format = ""
+
+opt.version = Traktor::NML::VERSION
+opt.on('-f FORMAT', '--format FORMAT', 'Specify output format') do |f|
+  out_format = f
+end
+
+opt.parse! ARGV
+
+abort 'please specify NML file to process' if ARGV.empty?
+
+ARGV.each do |file|
+  Traktor::NML.load(file).each_with_index do |track, i|
+    puts(out_format.split(/(%[a-zA-Z])/).map do |f|
+      case f
+      when '%t'
+        track.title
+      when '%a'
+        track.artist
+      when '%d'
+        track.album[:name]
+      when '%i'
+        track.album[:track]
+      when '%I'
+        i+1
+      when '%p'
+        track.primarykey
+      when '%g'
+        track.genre
+      when '%l'
+        track.label
+      when '%D'
+        track.release_date
+      when '%T'
+        track.playtime
+      when '%b'
+        track.bpm
+      when '%k'
+        track.key
+      when '%K'
+        track.musical_key
+      else
+        f
+      end
+    end.join)
+  end
+end
