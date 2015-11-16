@@ -1,9 +1,9 @@
 # Traktor::NML
 
-[![Circle CI](https://circleci.com/gh/polamjag/traktor-nml.svg?style=svg)](https://circleci.com/gh/polamjag/traktor-nml)
 [![Gem Version](https://badge.fury.io/rb/traktor-nml.svg)](http://badge.fury.io/rb/traktor-nml)
+[![Circle CI](https://circleci.com/gh/polamjag/traktor-nml.svg?style=svg)](https://circleci.com/gh/polamjag/traktor-nml)
 
-Ruby library to parse NI Traktor's nml playlist file
+Ruby library to parse NI Traktor's .nml playlist file
 
 ## Installation
 
